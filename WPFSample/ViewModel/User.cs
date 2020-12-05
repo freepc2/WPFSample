@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace WPFSample.ViewModel
 {
+    // MainViewModel에서 사용할 DATA들의 모임
+    // ViewModelBase 
     public class User : ViewModelBase
     {
         private string _firstName;
         public string FirstName 
         { 
             get { return _firstName; } 
-            set { _firstName = value; OnPropertyChanged(); }
+            set { Set(ref _firstName, value); }
         }
 
 
@@ -20,7 +22,7 @@ namespace WPFSample.ViewModel
         public string LastName 
         { 
             get { return _lastName; } 
-            set { _lastName = value; OnPropertyChanged(); } 
+            set { Set(ref _lastName, value); } 
         }
     }
 }
