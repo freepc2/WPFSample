@@ -1,9 +1,8 @@
-﻿
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-namespace WPFSample.ViewModel
+﻿namespace WPFSample.ViewModel
 {
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
