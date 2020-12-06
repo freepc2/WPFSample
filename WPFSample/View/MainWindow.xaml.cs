@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using WPFSample.ViewModel;
 
 namespace WPFSample.View
@@ -21,7 +22,8 @@ namespace WPFSample.View
     /// </summary>
     public partial class MainWindow : Page
     {
-        
+
+        DispatcherTimer MyTimer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
@@ -42,5 +44,7 @@ namespace WPFSample.View
             v.FirstName = "길동";
 
         }
+
+
     }
 }

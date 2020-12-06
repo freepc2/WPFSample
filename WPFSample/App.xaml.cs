@@ -48,11 +48,25 @@ namespace WPFSample
 
             /*
              * DATA 박스의 내용물
-             * 1. List<double> 의 Temp값등
-             * 2. String의 Key값
-             * 3. CheckPoint가 입력되는 값
-             * 4. 프로브의 Max값이 표시되어야 한다.
+             * 1. List<double>
+             * 2. KEY[TEMP, EMF...]
+             * 3. SampleRate[100,10...]
+             * 4. Probe Max, Min
+             */ 
+
+            /*
+             * LINQ 사용하기
+             * 
              */
+
+            LINQ linq = new LINQ();
+            var listTest = linq.GetStudentListOfAverage(80);
+
+            foreach(var l in listTest)
+            {
+                Debug.WriteLine("이름:{0}, 평균:{1}", l.Name, l.Average);
+            }
+            
         }
     }
 }
