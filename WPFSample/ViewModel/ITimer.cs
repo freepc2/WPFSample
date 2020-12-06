@@ -26,7 +26,7 @@ namespace WPFSample.ViewModel
 
         public Timer()
         {
-            internalTimer = new DispatcherTimer();
+            internalTimer = new DispatcherTimer(DispatcherPriority.SystemIdle);
         }
 
         public bool IsEnabled
