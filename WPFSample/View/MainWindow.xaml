@@ -31,6 +31,7 @@
 
         <Button Grid.Column="1" Margin="19,10,105.667,18" Grid.Row="2" Content="보기" Command="{Binding OnMessageCommand}" RenderTransformOrigin="0.521,0.804"/>
         <Button Grid.Column="1" Margin="115,10,9.667,18" Grid.Row="2" Content="바꾸기" Command="{Binding OnChangeCommand}"/>
+        <Button Grid.Column="0" Margin="10,30,9.667,10" Grid.Row="2" Command="{Binding OnListView}" Content="ListView" />
     </Grid>
 
 </Page>
