@@ -5,12 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:ViewModel="clr-namespace:WPFSample.ViewModel"
       xmlns:local="clr-namespace:WPFSample.View"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:Model="clr-namespace:WPFSample.Model"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListView">
 
+    <!-- ViewModel을 연동하기 : Comamand 등 이용-->
+    
+    <Page.DataContext>
+        <ViewModel:ListViewModel x:Name="ListViewModel"/>
+    </Page.DataContext>
+    
     <Page.Resources>
-        <ViewModel:ListViewModelItem x:Key="Item"/>
+        <!-- 
+            ViewModel을 리소스에 이름을 생성하기
+            ListView에서 사용하기 위해서 생성     
+        -->
         <DataTemplate x:Key="template">
             <Grid Width="250">
                 <Grid.ColumnDefinitions>
@@ -22,9 +33,18 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
+
     <StackPanel Name="rootElement"
-                DataContext="{Binding Source={StaticResource Item}}"
-                DataContextChanged="rootElement_DataContextChanged">
+                DataContext="{Binding Source={StaticResource Students}}">
+        <!-- DC Change를 활용하여 StackPanel과 연동하기 -->
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="DataContextChanged">
+                <i:InvokeCommandAction Command="{Binding DCChange}"
+                                       CommandParameter="{Binding ElementName=rootElement}"
+                                       />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+
         <Grid Width="250">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
@@ -38,29 +58,20 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="3">시험성적 리스트</TextBlock>
-            <Button Grid.Row="1" Grid.Column="0" Name="BtnName" Content="이름" Click="Btnindex_Click"/>
-            <Button Grid.Row="1" Grid.Column="1" Name="BtnAverage" Content="평균" Click="Btnindex_Click"/>
+
+            <Button Grid.Row="1" Grid.Column="0" Name="BtnName" Content="이름" 
+                    Command="{Binding DClick}" 
+                    CommandParameter="{Binding ElementName=BtnName}"/>
+            <Button Grid.Row="1" Grid.Column="1" Name="BtnAverage" Content="평균" 
+                    Command="{Binding DClick}" 
+                    CommandParameter="{Binding ElementName=BtnAverage}"/>
+
+            <!-- 목록 표시 부분-->
             <ListBox Grid.Row="2" Grid.ColumnSpan="3"
-                     ItemsSource="{Binding Source={StaticResource Item}}"
+                     ItemsSource="{Binding Source={StaticResource Students}}"
                      ItemTemplate="{StaticResource template}"
                      IsSynchronizedWithCurrentItem="True"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
         </Grid>
     </StackPanel>
-    
-    <!--
-   
-        <Grid >
-        <ListView ItemsSource="{Binding Source={StaticResource Item}}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="100"/>
-                    <GridViewColumn Header="Average" DisplayMemberBinding="{Binding Average}" Width="100"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
-    
-    -->
-
 </Page>

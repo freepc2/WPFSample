@@ -24,15 +24,5 @@ namespace WPFSample.View
         {
             InitializeComponent();
         }
-
-        private void rootElement_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void Btnindex_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -59,13 +59,13 @@ namespace WPFSample
              * 
              */
 
-            LINQ linq = new LINQ();
-            var listTest = linq.GetStudentListOfAverage(80);
+            //LINQ linq = new LINQ();
+            //var listTest = linq.GetStudentListOfAverage(80);
 
-            foreach(var l in listTest)
-            {
-                Debug.WriteLine("이름:{0}, 평균:{1}", l.Name, l.Average);
-            }
+            //foreach(var l in listTest)
+            //{
+            //    Debug.WriteLine("이름:{0}, 평균:{1}", l.Name, l.Average);
+            //}
             
         }
     }

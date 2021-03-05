@@ -4,8 +4,10 @@
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Windows;
+    using System.Windows.Input;
+    using Command;
 
-    public class MainViewModel :User
+    public class MainViewModel : User
     {
         /*
          *  UI Timer
@@ -22,9 +24,9 @@
          */
         BackgroundWorker _backgroundWorker = new BackgroundWorker();
 
-        public Command.MainCommand OnMessageCommand { get; private set; }
-        public Command.MainCommand OnChangeCommand { get; private set; }
-        public Command.MainCommand OnListView { get; private set; }
+        public ICommand OnMessageCommand { get; private set; }
+        public ICommand OnChangeCommand { get; private set; }
+        public ICommand OnListView { get; private set; }
         
         private string _Time;
         public string Time 
@@ -37,9 +39,9 @@
             FirstName = "KIL-DONG";
             LastName = "KIM";
 
-            OnMessageCommand = new Command.MainCommand(OnMessage);
-            OnChangeCommand = new Command.MainCommand(OnChange);
-            OnListView = new Command.MainCommand(OnListview);
+            OnMessageCommand = new RelayCommand(OnMessage);
+            OnChangeCommand = new RelayCommand(OnChange);
+            OnListView = new RelayCommand(OnListview);
 
 
             // Timer Setting
@@ -56,21 +58,21 @@
         }
 
 
-        public void OnMessage(object param)
+        public void OnMessage()
         {
             MessageBox.Show(LastName + "," + FirstName);
 
             this.timer.Start();
         }
 
-        public void OnChange(object param)
+        public void OnChange()
         {
             this.timer.Stop();
             (FirstName, LastName) = ("홍","길동");
 
         }
 
-        public void OnListview(object param)
+        public void OnListview()
         {
             this.timer.Stop();
             Window newwindow = new Window();
